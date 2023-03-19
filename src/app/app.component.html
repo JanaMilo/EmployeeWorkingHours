@@ -1,0 +1,30 @@
+<h1>Employees working hours</h1>
+<hr>
+
+<table class="table">
+  <tr>
+    <th *ngFor="let column of headers">
+      {{column}}
+    </th>
+  </tr>
+
+  <tr *ngFor="let row of employees" [ngClass]="{'make-yellow': row.WorkingHours < 100}">
+    <td>
+      {{row.EmployeeName}}
+    </td>
+    <td>
+      {{row.WorkingHours}}
+    </td>
+    <td>
+      <a>Edit</a>
+    </td>
+
+  </tr>
+</table>
+
+
+
+<!--<table mat-table [dataSource]="employees" class="mat-elevation-z8">
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row [ngClass]="{'make-gold': row.symbol == 'H'}" *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>-->
