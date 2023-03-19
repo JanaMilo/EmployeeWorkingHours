@@ -44,12 +44,14 @@ export class AppComponent implements OnInit {
     this.entries.forEach(entry => {
       
       if (this.employees.find(x => x.EmployeeName === entry.EmployeeName) === undefined) {
-        let time = Math.abs((new Date(entry.StarTimeUtc)).getTime() - (new Date(entry.EndTimeUtc)).getTime());
-        const modal: Employees = {
-          EmployeeName: entry.EmployeeName,
-          WorkingHours: time
+        if (entry.EmployeeName !== null) {
+          let time = Math.abs((new Date(entry.StarTimeUtc)).getTime() - (new Date(entry.EndTimeUtc)).getTime());
+          const modal: Employees = {
+            EmployeeName: entry.EmployeeName,
+            WorkingHours: time
+          }
+          this.employees.push(modal);
         }
-        this.employees.push(modal);
       }
       else {
         let time = Math.abs((new Date(entry.StarTimeUtc)).getTime() - (new Date(entry.EndTimeUtc)).getTime());
@@ -62,7 +64,7 @@ export class AppComponent implements OnInit {
     this.employees.forEach(employee => {
       employee.WorkingHours = convertMsToTime(employee.WorkingHours);
     });
-    
+
   }
 }
 
