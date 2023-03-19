@@ -22,9 +22,17 @@
   </tr>
 </table>
 
+<app-pie-chart  *ngFor="let employee of employees"
+[employees]="employees"></app-pie-chart>
 
 
-<!--<table mat-table [dataSource]="employees" class="mat-elevation-z8">
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row [ngClass]="{'make-gold': row.symbol == 'H'}" *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>-->
+<!--<div class="chart-wrapper">
+  <canvas baseChart 
+  [data]="employees" 
+  [labels]="pieChartLabels" 
+  [chartType]="pieChartType"
+  [options]="pieChartOptions"
+  [plugins]="pieChartPlugins"
+  [legend]="pieChartLegend">
+</canvas>
+</div>-->
