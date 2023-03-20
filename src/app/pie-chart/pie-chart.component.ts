@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
-import Chart from 'chart.js/auto';
+import { Chart } from 'chart.js/auto';
 import { Employees } from '../app.component';
+import "chartjs-plugin-datalabels";
+//import { NgChartsModule } from 'ng2-charts';
+//import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 
 @Component({
@@ -17,6 +20,10 @@ export class PieChartComponent {
   //this.employees = appComponent.employees;
   // }
 
+  //public chartPlugins = [pluginDataLabels];
+
+
+
 
   ngOnInit(): void {
     this.createChart();
@@ -26,9 +33,14 @@ export class PieChartComponent {
 
     let employeesNames: string[] = [];
     let employeesWorkingHours: number[] = [];
+    let employeesPercentage: number[] = [];
+
     this.employees.forEach(employee => {
-      employeesNames.push(employee.EmployeeName);
-      employeesWorkingHours.push(employee.WorkingHours);
+      if (employee.EmployeeName !== null) {
+        employeesNames.push(employee.EmployeeName);
+        employeesWorkingHours.push(employee.WorkingHours);
+        employeesPercentage.push(employee.Percentage);
+      }
     });
 
 
@@ -36,10 +48,10 @@ export class PieChartComponent {
       type: 'pie', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: employeesNames,//['Red', 'Pink','Green','Yellow','Orange','Blue', ],
+        labels: employeesNames, //['Red', 'Pink','Green','Yellow','Orange','Blue', ],
         datasets: [{
-          label: 'My First Dataset',
-          data: employeesWorkingHours,//[300, 240, 100, 432, 253, 34],
+          label: 'Percentage',
+          data: employeesPercentage, //[300, 240, 100, 432, 253, 34],
           backgroundColor: [
             'red',
             'pink',
@@ -52,13 +64,23 @@ export class PieChartComponent {
             'black',
             'maroon'
           ],
-          hoverOffset: 4
+          hoverOffset: 4,
         }],
       },
       options: {
-        aspectRatio: 2.5
+        aspectRatio: 2.5,
+        plugins: {
+          datalabels: {
+            display: true,
+            align: 'bottom',
+            backgroundColor: '#ccc',
+            borderRadius: 3,
+            font: {
+              size: 18,
+            }
+          }
+        }
       }
-
     });
   }
 }

@@ -21,7 +21,7 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgChartsModule
+    NgChartsModule,
   ],
   providers: [
     HttpClient

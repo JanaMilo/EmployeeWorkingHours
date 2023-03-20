@@ -50,7 +50,8 @@ export class AppComponent implements OnInit {
           let time = Math.abs((new Date(entry.StarTimeUtc)).getTime() - (new Date(entry.EndTimeUtc)).getTime());
           const modal: Employees = {
             EmployeeName: entry.EmployeeName,
-            WorkingHours: time
+            WorkingHours: time,
+            Percentage: 0
           }
           this.employees.push(modal);
         }
@@ -63,9 +64,17 @@ export class AppComponent implements OnInit {
       }
     });
 
+    let sumOfWorkingHours = 0;
+
     this.employees.forEach(employee => {
       employee.WorkingHours = convertMsToTime(employee.WorkingHours);
+      sumOfWorkingHours = sumOfWorkingHours + employee.WorkingHours;
     });
+
+    this.employees.forEach(employee => {
+      employee.Percentage = (employee.WorkingHours/sumOfWorkingHours) * 100;
+    });
+
 
   }
 }
@@ -91,4 +100,5 @@ export interface Entries {
 export interface Employees {
   EmployeeName: string
   WorkingHours: number
+  Percentage: number
 }
