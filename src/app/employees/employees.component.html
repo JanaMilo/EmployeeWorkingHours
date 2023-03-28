@@ -1,1 +1,23 @@
-<p>employees works!</p>
+<h1>Employees working hours</h1>
+<hr>
+
+<table class="table">
+  <tr>
+    <th *ngFor="let column of headers">
+      {{column}}
+    </th>
+  </tr>
+
+  <tr *ngFor="let row of employees" [ngClass]="{'make-yellow': row.WorkingHours < 100}">
+    <td>
+      {{row.EmployeeName}}
+    </td>
+    <td>
+      {{row.WorkingHours}}
+    </td>
+    <td>
+      <a target="_blank" href="">Edit</a>
+    </td>
+
+  </tr>
+</table>

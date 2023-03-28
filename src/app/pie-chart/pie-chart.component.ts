@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { Employees } from '../app.component';
 import "chartjs-plugin-datalabels";
+import { Employees } from '../employees/employees.component';
 //import { NgChartsModule } from 'ng2-charts';
 //import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
